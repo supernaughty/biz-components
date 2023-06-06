@@ -6,7 +6,22 @@ interface BizButtonProps {
 }
 
 const BizButton: React.FC<BizButtonProps> = ({ children }: BizButtonProps) => {
-  return <button className="biz-button">{children}</button>
+  const [isMouseOver, setIsMouseOver] = React.useState(false)
+  const handleMouseOver = (): void => {
+    setIsMouseOver(true)
+  }
+  const handleMouseLeave = (): void => {
+    setIsMouseOver(false)
+  }
+  return (
+    <button
+      className={`biz-button ${isMouseOver ? 'mouseover' : ''}`}
+      onMouseOver={handleMouseOver}
+      onMouseLeave={handleMouseLeave}
+    >
+      {children}
+    </button>
+  )
 }
 
 export default BizButton
